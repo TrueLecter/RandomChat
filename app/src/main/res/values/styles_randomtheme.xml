@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- Generated with http://android-holo-colors.com -->
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <style name="AutoCompleteTextViewRandomTheme" parent="android:Widget.Holo.Light.AutoCompleteTextView">
+        <item name="android:dropDownSelector">@drawable/randomtheme_list_selector_holo_light</item>
+        <item name="android:background">@drawable/randomtheme_edit_text_holo_light</item>
+    </style>
+
+    <style name="ButtonRandomTheme" parent="android:Widget.Holo.Light.Button">
+        <item name="android:background">@drawable/randomtheme_btn_default_holo_light</item>
+    </style>
+
+    <style name="ImageButtonRandomTheme" parent="android:Widget.Holo.Light.ImageButton">
+        <item name="android:background">@drawable/randomtheme_btn_default_holo_light</item>
+    </style>
+
+    <style name="SpinnerRandomTheme" parent="android:Widget.Holo.Light.Spinner">
+        <item name="android:background">@drawable/randomtheme_spinner_background_holo_light</item>
+        <item name="android:dropDownSelector">@drawable/randomtheme_list_selector_holo_light</item>
+    </style>
+
+    <style name="TabRandomTheme">
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:paddingLeft">16dip</item>
+        <item name="android:paddingRight">16dip</item>
+        <item name="android:background">@drawable/randomtheme_tab_indicator_holo</item>
+        <item name="android:layout_width">0dip</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:minWidth">80dip</item>
+    </style>
+
+    <style name="TabTextRandomTheme">
+        <item name="android:textColor">#fff</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textStyle">bold</item>
+        <!-- v14 <item name="android:textAllCaps">true</item> -->
+        <item name="android:ellipsize">marquee</item>
+        <item name="android:maxLines">2</item>
+        <item name="android:maxWidth">180dip</item>
+    </style>
+
+    <style name="ProgressBarRandomTheme" parent="android:Widget.Holo.Light.ProgressBar.Horizontal">
+        <item name="android:progressDrawable">@drawable/randomtheme_progress_horizontal_holo_light
+        </item>
+        <item name="android:indeterminateDrawable">
+            @drawable/randomtheme_progress_indeterminate_horizontal_holo_light
+        </item>
+    </style>
+
+    <style name="SeekBarRandomTheme" parent="android:Widget.Holo.Light.SeekBar">
+        <item name="android:progressDrawable">
+            @drawable/randomtheme_scrubber_progress_horizontal_holo_light
+        </item>
+        <item name="android:indeterminateDrawable">
+            @drawable/randomtheme_scrubber_progress_horizontal_holo_light
+        </item>
+        <item name="android:thumb">@drawable/randomtheme_scrubber_control_selector_holo_light</item>
+    </style>
+
+    <style name="RandomActionBar" parent="@android:style/Widget.Holo.Light.ActionBar">
+        <item name="android:background">@color/randomtheme_color</item>
+        <item name="android:titleTextStyle">@style/RandomTheme.ActionBar.TitleTextStyle</item>
+    </style>
+
+    <style name="RandomTheme.ActionBar.TitleTextStyle" parent="@android:style/TextAppearance.Holo.Widget.ActionBar.Title">
+        <item name="android:textColor">#fff</item>
+    </style>
+
+    <style name="NoActionBar" parent="@android:style/Theme.Holo.Light">
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+</resources>

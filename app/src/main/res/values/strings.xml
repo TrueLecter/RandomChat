@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">RandomChat</string>
+
+    <!-- Content Description -->
+    <string name="desc_list_item_icon">Иконка</string>
+    <string name="title">Чатик форума RandomForum</string>
+    <string name="author_name">By _TrueLecter_, TheVayt</string>
+    <string name="login">Логин</string>
+    <string name="password">Пароль</string>
+    <string name="btn_join">Войти</string>
+    <string name="btn_send">Отправить</string>
+    <string name="author_url">http://minuette.ru</string>
+    <string name="logoDescription">Logo</string>
+
+</resources>

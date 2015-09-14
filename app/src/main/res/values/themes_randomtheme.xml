@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- Generated with http://android-holo-colors.com -->
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <style name="RandomTheme" parent="@style/_RandomTheme" />
+
+    <style name="_RandomTheme" parent="android:Theme.Holo.Light">
+
+        <item name="android:editTextBackground">@drawable/randomtheme_edit_text_holo_light</item>
+
+        <item name="android:textColorHighlight">#99166c97</item>
+        <item name="android:textSelectHandleLeft">@drawable/randomtheme_text_select_handle_left
+        </item>
+        <item name="android:textSelectHandleRight">@drawable/randomtheme_text_select_handle_right
+        </item>
+        <item name="android:textSelectHandle">@drawable/randomtheme_text_select_handle_middle</item>
+
+        <item name="android:autoCompleteTextViewStyle">@style/AutoCompleteTextViewRandomTheme</item>
+
+        <item name="android:listChoiceIndicatorMultiple">
+            @drawable/randomtheme_btn_check_holo_light
+        </item>
+
+        <item name="android:listChoiceIndicatorSingle">@drawable/randomtheme_btn_radio_holo_light
+        </item>
+
+        <item name="android:buttonStyle">@style/ButtonRandomTheme</item>
+
+        <item name="android:imageButtonStyle">@style/ImageButtonRandomTheme</item>
+
+        <item name="android:dropDownSpinnerStyle">@style/SpinnerRandomTheme</item>
+
+        <item name="android:progressBarStyleHorizontal">@style/ProgressBarRandomTheme</item>
+
+        <item name="android:seekBarStyle">@style/SeekBarRandomTheme</item>
+
+        <item name="android:listChoiceBackgroundIndicator">
+            @drawable/randomtheme_list_selector_holo_light
+        </item>
+
+        <item name="android:activatedBackgroundIndicator">
+            @drawable/randomtheme_activated_background_holo_light
+        </item>
+
+        <item name="android:fastScrollThumbDrawable">@drawable/randomtheme_fastscroll_thumb_holo
+        </item>
+
+        <item name="android:actionBarStyle">@style/RandomActionBar</item>
+
+    </style>
+
+</resources>
