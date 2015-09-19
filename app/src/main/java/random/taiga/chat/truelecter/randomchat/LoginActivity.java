@@ -130,7 +130,7 @@ public class LoginActivity extends Activity {
                 User u;
                 try {
                     if (Config.LOGIN_DEBUG)
-                        u = c.login(Config.testLogin, Config.testPasword);
+                        u = c.login(Config.testLogin, Config.testPassword);
                     else
                         u = c.login(params[0], params[1]);
                     if (u == null) {
