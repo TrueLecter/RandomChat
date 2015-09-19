@@ -12,9 +12,9 @@
     $err = 0;
     $errMsg = "Success!";
     try {
-        $message = mysqli_real_escape_string($link, $params['msg']);  
-        $login = mysqli_real_escape_string($link, $params['l']);
-        $hash = mysqli_real_escape_string($link, $params['hash']);
+        $message = $params['msg'];  
+        $login = $params['l'];
+        $hash = $params['hash'];
         if (checkAuthHash($login, $hash, $xenAPI)){
             $xfDir = dirname('../../');
             require_once($xfDir . '/library/XenForo/Autoloader.php');
@@ -27,9 +27,20 @@
             //var_dump($user, true);
             if ($user -> hasPermission($GROUP, $PERM)){
                 $time = time();
-                $q = "INSERT INTO dark_taigachat (user_id, room_id, username, date, last_update, message, activity) VALUES ($uid, 1, '$login', $time, $time, '$message', 0) ";
+                //uid - 1
+                //login - 2
+                //time - 3,4
+                //msg - 5
+                $q = "INSERT INTO dark_taigachat (user_id, room_id, username, date, last_update, message, activity) VALUES (? 1, '?', ?, ?, '?', 0) ";
+                $STH = $DBH->prepare($q);
+                $STH->bindParam(1, $uid);  
+                $STH->bindParam(2, $login);  
+                $STH->bindParam(3, $time); 
+                $STH->bindParam(4, $time);  
+                $STH->bindParam(5, $message); 
+                $STH->execute(); 
                 //print($q);
-                mysqli_query($link,$q);
+                //mysqli_query($link,$q);
             } else {
                 $errMsg = 'You are not permitted to write in chat.';
                 $err = 1337;

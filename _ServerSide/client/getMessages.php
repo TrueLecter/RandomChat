@@ -5,7 +5,7 @@
     include 'includes/config.php';
     include 'includes/utils.php';
 
-    function getMsg($link, $date, $limit, $xenAPI, $apiKey){
+    function getMsg($DBH, $date, $limit, $xenAPI, $apiKey){
         $dateS = ' WHERE date > '.$date;
         if (!isset($date) || !$date){
             $dateS = '';
@@ -21,13 +21,15 @@
             $limitS = ' LIMIT 150';
         }
         $q = 'SELECT * FROM `dark_taigachat`' . $dateS . ' ORDER BY date DESC'.$limitS;
-        $res = mysqli_query($link, $q);
+        $STH = $DBH->query($q);
+        $STH->setFetchMode(PDO::FETCH_ASSOC);
         $table = array();
         $i = 0;
-        while ($row = mysqli_fetch_array($res)) {
+        while ($row = $STH->fetch()) {
 			$q = 'SELECT username FROM `xf_user` WHERE user_id = ' . $row['user_id'] ;
-			$r = mysqli_query($link, $q);
-			$r = mysqli_fetch_object($r);
+			$STHU = $DBH->query($q);
+            $STHU->setFetchMode(PDO::FETCH_OBJ);
+			$r = $STHU->fetch();
 			$table[] = array('id' => strip_tags($row['id']), 'uid' => $row['user_id'], 'rid' => $row['room_id'],'date' => $row['date'],'msg' => $row['message'],'uname'=>$r->username , 'avatar' =>'notImplmented');
             $i = $i + 1;
         }
@@ -44,7 +46,7 @@
     try{
         $params = $_REQUEST;
         if ($canShowChatForNonLogged || checkAuthHash($params['u'],$params['hash'],$XenAPI)){
-    	    die(json_encode(getMsg($link,$params['date'],$params['limit'],$xenAPI,$apiKey),128));
+    	    die(json_encode(getMsg($DBH,$params['date'],$params['limit'],$xenAPI,$apiKey),128));
 	    } else {
 	    	$err = 322;
 	    	$errMsg = 'You must be logged in.';

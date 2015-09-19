@@ -38,11 +38,13 @@
 	}
 
 	function getUserID($link, $name){
-		$q = "SELECT `user_id` as uid FROM `xf_user` WHERE `username` = '$name'";
+		$q = "SELECT `user_id` as uid FROM `xf_user` WHERE `username` = '?'";
 		//print($q);
-		$r = mysqli_query($link, $q);
-		$r = mysqli_fetch_array($r);
-		return $r['uid'];
+		$STH = $link->prepare($q);
+		$STH->bindParam(1, $name);
+		$STH->execute();
+        $STH->setFetchMode(PDO::FETCH_OBJ);
+		return $r->uid;
 	}
 
 ?>

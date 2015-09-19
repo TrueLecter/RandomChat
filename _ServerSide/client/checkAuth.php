@@ -10,8 +10,8 @@
     $err = 0;
     $errMsg = "Success!";
     try {
-        $login = mysqli_real_escape_string($link, $params['l']);
-        $hash = mysqli_real_escape_string($link, $params['hash']);
+        $login = $params['l'];
+        $hash = $params['hash'];
         if (!checkAuthHash($login, $hash, $xenAPI)){
             $errMsg = 'This hash is not valid.';
             $err = 1228;
