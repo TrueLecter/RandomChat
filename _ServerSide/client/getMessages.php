@@ -5,32 +5,30 @@
     include 'includes/config.php';
     include 'includes/utils.php';
 
-    function getMsg($DBH, $date, $limit, $xenAPI, $apiKey){
-        $dateS = ' WHERE date > '.$date;
-        if (!isset($date) || !$date){
-            $dateS = '';
+    function getMsg($DBH, $dateB, $limit, $xenAPI, $apiKey){
+        if (!isset($dateB) || !$dateB){
+            $dateS = '0';
+        } else {
+            $dateS = $dateB;
         }
-
-        $limitS = ' LIMIT '.$limit;
-        
+        $limitS = $limit;
         if (!isset($limit) || !$limit){
-            $limitS = '';
+            $limitS = 150;
         }
-        
-        if (!isset($limit) && !isset($date)){
-            $limitS = ' LIMIT 150';
+        if (!isset($limit) && !isset($dateB)){
+            $limitS = 150;
+            $dateS = '0';
         }
-        $q = 'SELECT * FROM `dark_taigachat`' . $dateS . ' ORDER BY date DESC'.$limitS;
-        $STH = $DBH->query($q);
-        $STH->setFetchMode(PDO::FETCH_ASSOC);
+        $q = 'SELECT dark_taigachat.id, dark_taigachat.user_id, dark_taigachat.room_id, dark_taigachat.date, dark_taigachat.message, xf_user.username  FROM `dark_taigachat`, `xf_user` WHERE xf_user.user_id = dark_taigachat.user_id AND dark_taigachat.date > :dateS ORDER BY dark_taigachat.date DESC LIMIT :limitS';
+        $STH = $DBH->prepare($q);
+        $STH -> setFetchMode(PDO::FETCH_ASSOC);
+        $STH -> bindValue(':dateS', intval($dateS), PDO::PARAM_INT);
+        $STH -> bindValue(':limitS', intval($limitS), PDO::PARAM_INT);
+        $STH -> execute();
         $table = array();
         $i = 0;
         while ($row = $STH->fetch()) {
-			$q = 'SELECT username FROM `xf_user` WHERE user_id = ' . $row['user_id'] ;
-			$STHU = $DBH->query($q);
-            $STHU->setFetchMode(PDO::FETCH_OBJ);
-			$r = $STHU->fetch();
-			$table[] = array('id' => strip_tags($row['id']), 'uid' => $row['user_id'], 'rid' => $row['room_id'],'date' => $row['date'],'msg' => $row['message'],'uname'=>$r->username , 'avatar' =>'notImplmented');
+			$table[] = array('id' => $row['id'], 'uid' => $row['user_id'], 'rid' => $row['room_id'], 'date' => $row['date'], 'msg' => strip_tags($row['message']), 'uname' => $row['username'], 'avatar' =>'notImplmented');
             $i = $i + 1;
         }
         if ($i == 0) {

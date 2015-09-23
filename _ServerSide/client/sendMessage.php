@@ -21,7 +21,7 @@
             XenForo_Autoloader::getInstance()->setupAutoloader($xfDir. '/library');
             XenForo_Application::initialize($xfDir . '/library', $xfDir);
             XenForo_Application::set('page_start_time', microtime(TRUE));
-            $uid = getUserID($link, $login);
+            $uid = getUserID($DBH, $login);
             //print($uid);
             $user = XenForo_Visitor::setup($uid);
             //var_dump($user, true);

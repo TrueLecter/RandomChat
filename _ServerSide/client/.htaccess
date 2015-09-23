@@ -1,0 +1,3 @@
+<Files PDOErrors.txt>
+  deny from all
+</Files>
