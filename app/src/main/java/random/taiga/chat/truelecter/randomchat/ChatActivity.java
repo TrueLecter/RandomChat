@@ -37,6 +37,8 @@ public class ChatActivity extends Activity {
     private MessagesListAdapter adapter;
     private List<Message> listMessages;
 
+    private static ChatActivity instance;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -85,6 +87,8 @@ public class ChatActivity extends Activity {
         ChatSendThread cs = new ChatSendThread(c, u);
         cs.start();
 
+        instance = this;
+
     }
 
     /**
@@ -114,13 +118,13 @@ public class ChatActivity extends Activity {
         });
     }
 
-    private void showToast(final String message) {
+    private static void showToast(final String message) {
 
-        runOnUiThread(new Runnable() {
+        instance.runOnUiThread(new Runnable() {
 
             @Override
             public void run() {
-                Toast.makeText(getApplicationContext(), message,
+                Toast.makeText(instance.getApplicationContext(), message,
                         Toast.LENGTH_LONG).show();
             }
         });
@@ -225,7 +229,10 @@ public class ChatActivity extends Activity {
                     canSend = true;
                     msgToSend = null;
                     onSendStateChange();
-                } catch (ChatError | JSONException e) {
+                } catch (ChatError e) {
+                    ChatActivity.showToast(e.getMessage());
+                    e.printStackTrace();
+                } catch (JSONException e) {
                     e.printStackTrace();
                 } finally {
                     canSend = true;
